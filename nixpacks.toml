@@ -1,0 +1,5 @@
+[phases.build]
+cmds = []
+
+[start]
+cmd = "python3 'rivals_server (2).py'"
