@@ -175,7 +175,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
 #again-btn{font-family:'Press Start 2P',monospace;font-size:.48rem;letter-spacing:.08em;background:var(--y);color:#000;border:none;cursor:pointer;padding:.8rem 2.2rem;transition:transform .15s,filter .15s}
 #again-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
 #mp-badge{font-family:'Press Start 2P',monospace;font-size:.28rem;color:var(--g);border:1px solid rgba(0,229,160,.3);padding:.2rem .5rem;margin-bottom:.8rem;display:inline-block}
-
+ 
 /* ── AUTH SCREEN ── */
 #auth{background:var(--bg);display:flex;align-items:center;justify-content:center;min-height:100%;background-image:linear-gradient(rgba(255,230,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,230,0,.03) 1px,transparent 1px);background-size:50px 50px}
 #auth-box{width:100%;max-width:420px;padding:1rem}
@@ -201,7 +201,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
 #profile-stats{font-family:'Press Start 2P',monospace;font-size:.22rem;color:#5a5a90}
 #profile-logout{font-family:'Press Start 2P',monospace;font-size:.22rem;background:transparent;border:1px solid #3a3a60;color:#5a5a90;padding:.2rem .5rem;cursor:pointer;transition:all .15s}
 #profile-logout:hover{border-color:var(--r);color:var(--r)}
-
+ 
 /* ── LOBBY PANEL (shown on CODE tab when in a room) ── */
 #lobby-panel{position:fixed;bottom:1rem;right:1rem;width:320px;z-index:200;display:none;flex-direction:column;gap:.5rem}
 #lobby-panel.show{display:flex}
@@ -226,7 +226,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
 #lobby-chat-input::placeholder{color:#2a2a48;font-size:.8rem}
 #lobby-chat-send{font-family:'Press Start 2P',monospace;font-size:.22rem;background:transparent;border:none;border-left:1px solid var(--bdr);color:var(--y);padding:.35rem .5rem;cursor:pointer}
 #lobby-chat-send:hover{background:rgba(255,230,0,.07)}
-
+ 
 /* ── WIN SCREEN OVERLAY ── */
 #win-screen{position:fixed;inset:0;z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;background:rgba(5,5,8,.97);backdrop-filter:blur(20px)}
 #win-screen.show{display:flex}
@@ -241,37 +241,37 @@ tr.me td:first-child{border-left:3px solid var(--y)}
 .win-btn.primary{border-color:var(--y);color:var(--y)}.win-btn.primary:hover{background:var(--y);color:#000;box-shadow:0 0 24px rgba(255,230,0,.5)}
 .win-btn.secondary{border-color:#3a3a60;color:#5a5a90}.win-btn.secondary:hover{border-color:#888;color:#ccc}
 #win-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-
+ 
 /* ═══════════════════════════════════════
    MOBILE CONTROLS
 ═══════════════════════════════════════ */
 #mobile-controls{position:fixed;inset:0;pointer-events:none;z-index:30;display:none}
 .isMobile #mobile-controls{display:block}
-
+ 
 /* Left joystick */
 #joy-left-zone{position:absolute;left:0;bottom:0;width:45%;height:55%;pointer-events:all}
 #joy-left-base{position:absolute;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);transform:translate(-50%,-50%);display:none}
 #joy-left-stick{position:absolute;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.35);border:2px solid rgba(255,255,255,.6);transform:translate(-50%,-50%);display:none}
-
+ 
 /* Right joystick (aim + auto-shoot) */
 #joy-right-zone{position:absolute;right:0;bottom:0;width:45%;height:55%;pointer-events:all}
 #joy-right-base{position:absolute;width:110px;height:110px;border-radius:50%;background:rgba(255,49,49,.08);border:2px solid rgba(255,49,49,.25);transform:translate(-50%,-50%);display:none}
 #joy-right-stick{position:absolute;width:48px;height:48px;border-radius:50%;background:rgba(255,49,49,.45);border:2px solid rgba(255,80,80,.8);transform:translate(-50%,-50%);display:none}
-
+ 
 /* Action buttons */
 #mob-btns{position:absolute;right:12px;bottom:200px;display:flex;flex-direction:column;gap:10px;pointer-events:all}
 .mob-btn{width:52px;height:52px;border-radius:50%;border:2px solid;background:rgba(5,5,8,.85);font-family:'Press Start 2P',monospace;font-size:.32rem;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;flex-direction:column;gap:2px;line-height:1.2;text-align:center}
 #mob-reload{border-color:#FFE600;color:#FFE600}
 #mob-shop{border-color:#00E5A0;color:#00E5A0}
 #mob-sword{border-color:#a78bfa;color:#a78bfa}
-
+ 
 /* Menu touch improvements */
 .isMobile .wrap{padding:0 .5rem}
 .isMobile input.field,.isMobile .auth-field{font-size:16px!important} /* prevent iOS zoom */
 .isMobile .tbt{padding:.9rem}
 .isMobile #play-btn{padding:1.1rem}
 .isMobile .cbtn{padding:.9rem}
-
+ 
 /* Guest locked state */
 .guest-locked .mode-btn{opacity:.45;cursor:not-allowed;pointer-events:none}
 .guest-locked .mode-btn.on{opacity:.8;border-color:var(--y)}
@@ -279,7 +279,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
 .guest-locked .tbt.on{opacity:1}
 #guest-lock-notice{display:none;font-family:'Press Start 2P',monospace;font-size:.24rem;color:#5a5a90;text-align:center;padding:.4rem;border:1px solid #2a2a48;margin-bottom:.5rem}
 .guest-locked #guest-lock-notice{display:block}
-
+ 
 /* ── CHEAT CODE BOX ── */
 #cheat-wrap{margin-top:.6rem;display:flex;gap:.4rem;align-items:center}
 #cheat-in{flex:1;background:rgba(0,0,0,.6);border:2px solid #1a1a30;color:#5a5a90;font-family:'Press Start 2P',monospace;font-size:.28rem;padding:.45rem .6rem;letter-spacing:.1em;outline:none;transition:border-color .2s}
@@ -294,7 +294,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
 </head>
 <body>
 <div id="flash"></div>
-
+ 
 <!-- AUTH -->
 <div id="auth" class="screen" style="display:none">
   <div id="auth-box">
@@ -323,7 +323,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
     </div>
   </div>
 </div>
-
+ 
 <!-- MENU -->
 <div id="menu" class="screen active">
 <div class="wrap">
@@ -332,7 +332,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
       <div id="profile-name">GUEST</div>
       <div id="profile-stats">K:0 · D:0 · WINS:0</div>
     </div>
-    <button id="profile-logout" onclick="authLogout()">SIGN OUT</button>
+    <button id="profile-logout" onclick="authLogout()">SIGN IN / SIGN UP</button>
   </div>
   <h1>RIVALS</h1>
   <p class="sub">PISTOL START · EARN COINS · BUY GUNS</p>
@@ -413,8 +413,8 @@ tr.me td:first-child{border-left:3px solid var(--y)}
   </div>
 </div>
 </div>
-
-
+ 
+ 
 <!-- LOBBY PANEL (fixed bottom-right, visible on CODE tab when in a room) -->
 <div id="lobby-panel">
   <div id="lobby-players">
@@ -429,7 +429,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
     </div>
   </div>
 </div>
-
+ 
 <!-- GAME -->
 <div id="game" class="screen">
   <canvas id="gc"></canvas>
@@ -450,7 +450,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
       <div class="mob-btn" id="mob-sword">⚔️<span>ATK</span></div>
     </div>
   </div>
-
+ 
   <div id="hud">
     <div id="scorebar">
       <div>
@@ -490,7 +490,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
   <div id="duel-banner" style="display:none;position:absolute;inset:0;background:rgba(5,5,8,.85);backdrop-filter:blur(8px);z-index:30;flex-direction:column;align-items:center;justify-content:center;pointer-events:none">
     <div id="duel-banner-txt" style="font-family:'Press Start 2P',monospace;font-size:clamp(.5rem,2vw,.9rem);color:#FFE600;text-shadow:0 0 30px rgba(255,230,0,.8);text-align:center;padding:1rem"></div>
   </div>
-
+ 
 <!-- IN-GAME SHOP OVERLAY -->
 <div id="shop-overlay">
   <div id="shop-title">⚙ SHOP</div>
@@ -510,7 +510,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
   <div id="shop-msg"></div>
   <button id="shop-close" onclick="closeShop()">✕ CLOSE [B]</button>
 </div>
-
+ 
 <!-- WIN SCREEN OVERLAY -->
 <div id="win-screen">
   <div id="win-particles"></div>
@@ -523,7 +523,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
     <button class="win-btn secondary" onclick="winGoMenu()">🏠 MENU</button>
   </div>
 </div>
-
+ 
 <!-- END SCREEN -->
 <div id="end" class="screen">
   <div id="mp-badge" style="display:none">MULTIPLAYER MATCH</div>
@@ -532,7 +532,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
   <table><thead><tr><th>#</th><th>PLAYER</th><th>TEAM</th><th>K</th><th>D</th><th>K/D</th><th>SCORE</th><th>💰</th></tr></thead><tbody id="sb"></tbody></table>
   <button id="again-btn" onclick="endScreenReturn()">PLAY AGAIN ⚡</button>
 </div>
-
+ 
 <!-- PAUSE -->
 <div id="pause" style="display:none;position:fixed;inset:0;background:rgba(5,5,8,.92);backdrop-filter:blur(16px);z-index:100;flex-direction:column;align-items:center;justify-content:center">
   <div style="font-family:'Press Start 2P',monospace;font-size:clamp(1rem,3vw,2rem);color:#FFE600;text-shadow:0 0 30px rgba(255,230,0,.8);margin-bottom:.5rem">PAUSED</div>
@@ -543,9 +543,9 @@ tr.me td:first-child{border-left:3px solid var(--y)}
     <button onclick="exitToMenu()" style="font-family:'Press Start 2P',monospace;font-size:.42rem;background:transparent;border:2px solid #FF3131;color:#FF3131;padding:.8rem;cursor:pointer" onmouseover="this.style.background='rgba(255,49,49,.12)'" onmouseout="this.style.background='transparent'">✕ EXIT TO MENU</button>
   </div>
 </div>
-
+ 
 <script>
-
+ 
 // ═══════════════════════════════════
 //  DATA
 // ═══════════════════════════════════
@@ -596,6 +596,14 @@ const GUNS=[
 ];
 const GUN_MAP=Object.fromEntries(GUNS.map(g=>[g.id,g]));
 const GUN_ORDER=['pistol','smg','burst','assault','shotgun','revolver','minigun','sniper'];
+// Picks a random non-cheat gun for a bot. Excludes 'godgun' (GUN_ORDER already
+// has no godgun in it) and, when excludeId is given, avoids handing the bot
+// the exact same gun the player currently has equipped.
+function randomBotGun(excludeId){
+  const pool = excludeId ? GUN_ORDER.filter(id=>id!==excludeId) : GUN_ORDER;
+  const choices = pool.length ? pool : GUN_ORDER; // fallback if pool empties out
+  return GUN_MAP[choices[Math.floor(Math.random()*choices.length)]];
+}
 const POWS=[
   {id:'health',icon:'❤️',col:'#FF3131',lbl:'HEALTH +1', price:10},
   {id:'speed', icon:'⚡',col:'#FFE600',lbl:'SPEED BOOST',price:15},
@@ -617,7 +625,7 @@ const THEMES=[
   {name:'VOID',      fl:'#050408',gr:'rgba(160,0,255,.03)', wf:'#0a0510',ws:'rgba(140,0,230,.3)', wa:'rgba(170,0,255,.75)',st:'rgba(130,0,210,.07)'},
   {name:'NEON',      fl:'#060408',gr:'rgba(255,0,130,.03)', wf:'#0d0410',ws:'rgba(255,0,100,.27)',wa:'rgba(255,0,130,.75)',st:'rgba(210,0,95,.07)'},
 ];
-
+ 
 // ═══════════════════════════════════
 //  MAP
 // ═══════════════════════════════════
@@ -641,7 +649,7 @@ function mkObs(){
   ]];
   return sets[Math.floor(Math.random()*sets.length)];
 }
-
+ 
 // ═══════════════════════════════════
 //  GAME STATE
 // ═══════════════════════════════════
@@ -663,11 +671,11 @@ let equippedGunId='pistol'; // which gun player starts each life with
 let playerMaxHp=3; // can be raised by cheat code (max 5)
 // 1v1 round system
 let duelRounds={player:0,bot:0},duelRound=0,duelBot=null,duelBetween=false;
-
+ 
 // ── Multiplayer remote players ──
 let myPid=null;
 let remotePlayers={}; // pid → {x,y,angle,name,team,skin,hp,dead,gun,kills,deaths,score,coins}
-
+ 
 // ═══════════════════════════════════
 //  ENTITY (local simulation)
 // ═══════════════════════════════════
@@ -698,7 +706,7 @@ class Entity{
   }
   get tc(){return this.team==='red'?'#FF3131':this.team==='blue'?'#1E90FF':'#FFE600';}
   get tg(){return this.team==='red'?'rgba(255,49,49,.5)':this.team==='blue'?'rgba(30,144,255,.5)':'rgba(255,230,0,.4)';}
-
+ 
   takeDmg(src,dmg,isSword=false){
     if(this.dead)return;
     if(isSword){
@@ -713,7 +721,7 @@ class Entity{
     if(this.hp<=0)this.die(src);
     else if(this.isP){shakeIt(isSword?4:3);upHp();if(isMultiplayer)peerSend({type:'hp',hp:this.hp});}
   }
-
+ 
   die(src){
     this.dead=true;this.hp=0;this.deaths++;this.streak=0;this.swordHits=0;
     this.respT=RSP;
@@ -765,7 +773,7 @@ class Entity{
       }
     }
   }
-
+ 
   respawn(){
     let x,y,safe,t=0;
     do{
@@ -789,7 +797,7 @@ class Entity{
     }
     if(this.isP){upHp();upAmmo();hideRespawn();upCoins();if(isMultiplayer)peerSend({type:'respawn'});}
   }
-
+ 
   shoot(a){
     if(this.fireCD>0||this.reloading||this.ammo<=0||this.dead)return;
     for(let i=0;i<this.gun.pel;i++){
@@ -802,7 +810,7 @@ class Entity{
     // Send to friend in mp
     if(isMultiplayer&&this.isP)peerSend({type:'shoot',pid:myPidServer,x:this.x,y:this.y,angle:a,gun:this.gun.id});
   }
-
+ 
   startAtk(){
     if(this.atkCD>0||this.atk||this.dead)return;
     this.atk=true;this.atkA=this.angle;this.atkT=ADR;this.atkCD=SCD;this.hitSet.clear();
@@ -817,12 +825,12 @@ class Entity{
       if(Math.abs(df)<=SARC){this.hitSet.add(e);e.takeDmg(this,1,true);}
     }
   }
-
+ 
   updatePows(dt){
     if(this.powSpd){this.powSpdT-=dt;if(this.powSpdT<=0)this.powSpd=false;}
     if(this.powDmg){this.powDmgT-=dt;if(this.powDmgT<=0)this.powDmg=false;}
   }
-
+ 
   update(dt){
     this.updatePows(dt);
     if(this.hitF>0)this.hitF=Math.max(0,this.hitF-dt);
@@ -849,7 +857,7 @@ class Entity{
       if(Math.hypot(p.x-this.x,p.y-this.y)<22){p.dead=true;applyPow(this,p.type);}
     }
   }
-
+ 
   upPlayer(){
     let dx=0,dy=0;
     if(isMobile && this.isP && (this._mobDx||this._mobDy)){
@@ -872,7 +880,7 @@ class Entity{
         peerSend({type:'state',pid:myPidServer,x:this.x,y:this.y,angle:this.angle,vx:this.vx,vy:this.vy});}
     }
   }
-
+ 
   upBot(dt){
     const AR=70;let ax=0,ay=0;const ep=55;
     if(this.x<ep)ax+=(ep-this.x)/ep;if(this.x>AW-ep)ax-=(this.x-(AW-ep))/ep;
@@ -971,7 +979,7 @@ class Entity{
       }
     }
   }
-
+ 
   draw(){
     if(this.dead)return;
     const c=ctx;c.save();c.translate(this.x,this.y);
@@ -1044,7 +1052,7 @@ class Entity{
     }
   }
 }
-
+ 
 // ═══════════════════════════════════
 //  BULLET / PARTICLE / POWERUP
 // ═══════════════════════════════════
@@ -1102,7 +1110,7 @@ function burst(x,y,col,n,big=false){
   const add=Math.min(n, MAX_PARTS-particles.length);
   for(let i=0;i<add;i++)particles.push(new Particle(x,y,col,big));
 }
-
+ 
 class Powerup{
   constructor(x,y,t){this.x=x;this.y=y;this.type=t;this.anim=Math.random()*Math.PI*2;this.dead=false;}
   draw(){
@@ -1133,7 +1141,7 @@ function spawnPup(){
   }while(!safe&&++t<30);
   pups.push(new Powerup(x,y,POWS[Math.floor(Math.random()*POWS.length)]));
 }
-
+ 
 // ═══════════════════════════════════
 //  MAP DRAW
 // ═══════════════════════════════════
@@ -1181,7 +1189,7 @@ function drawMap(){
     });
   }
 }
-
+ 
 // ═══════════════════════════════════
 //  WIN CHECK
 // ═══════════════════════════════════
@@ -1219,9 +1227,7 @@ function checkWin(){
     }
   }
 }
-function endGame(txt,cls){
-  if(gameOver)return;
-  if(!hasPlayed)return;
+function _endGameCore(txt,cls){
   gameOver=true;running=false;closeShop();
   const won=(cls==='y')||(cls==='r'&&myTeam==='red')||(cls==='b'&&myTeam==='blue');
   const fl=document.getElementById('flash');
@@ -1285,7 +1291,7 @@ function buildSB(){
     tb.appendChild(tr);
   });
 }
-
+ 
 function endDuelRound(winner){
   if(duelBetween)return;
   duelBetween=true;
@@ -1323,7 +1329,7 @@ function startDuelRound(){
   const savedCoins=player?player.coins:0;
   const px=isHost||!isMultiplayer?260:AW-260, py=AH/2;
   if(player){player.dead=false;player.hp=playerMaxHp;player.x=px;player.y=py;player.setGun(GUN_MAP[equippedGunId]||GUN_MAP['pistol']);player.coins=savedCoins;/* keep ownedGuns — purchased guns persist */upHp();upAmmo();hideRespawn();}
-  if(duelBot){const bc=duelBot.coins;duelBot.dead=false;duelBot.hp=MAX_HP;duelBot.x=isHost||!isMultiplayer?AW-260:260;duelBot.y=AH/2;duelBot.setGun(GUN_MAP['pistol']);duelBot.coins=bc;}
+  if(duelBot){const bc=duelBot.coins;duelBot.dead=false;duelBot.hp=MAX_HP;duelBot.x=isHost||!isMultiplayer?AW-260:260;duelBot.y=AH/2;duelBot.setGun(randomBotGun(equippedGunId));duelBot.coins=bc;}
   // Tell peer: new round, reset positions
   if(isMultiplayer)peerSend({type:'duelNewRound'});
   for(let i=0;i<2;i++)spawnPup();
@@ -1443,7 +1449,7 @@ function showStreak(txt){
   stTO=setTimeout(()=>el.classList.remove('show'),2100);
 }
 function shakeIt(m){shakeMag=Math.max(shakeMag,m);}
-
+ 
 // ═══════════════════════════════════
 //  SHOP
 // ═══════════════════════════════════
@@ -1569,7 +1575,7 @@ function buyGun(gid){
   if(isMultiplayer)peerSend({type:'gun',gun:gid});
   buildMenuShop();    // refresh menu shop so owned status updates
 }
-
+ 
 // ═══════════════════════════════════
 //  REMOTE PLAYER DRAWING (multiplayer)
 // ═══════════════════════════════════
@@ -1605,7 +1611,7 @@ function drawRemotePlayers(){
     ctx.fillText(rp.name||'PLAYER',rp.x,rp.y-RAD-18);
   }
 }
-
+ 
 // ═══════════════════════════════════
 //  MAIN LOOP
 // ═══════════════════════════════════
@@ -1689,7 +1695,7 @@ function loop(ts){
   render();
   requestAnimationFrame(loop);
 }
-
+ 
 function render(){
   scl=Math.min(cvs.width/AW,cvs.height/AH);
   ox=(cvs.width-AW*scl)/2;oy=(cvs.height-AH*scl)/2;
@@ -1747,18 +1753,18 @@ function render(){
   }
   ctx.restore();
 }
-
+ 
 // ═══════════════════════════════════
 //  WEBSOCKET ROOM SYSTEM (connects to rivals_server.py)
 // ═══════════════════════════════════
 let ws=null, myPidServer=null, isHost=false, roomCode='';
 let _wsConnecting=false;
-
+ 
 function _wsUrl(){
   const proto=location.protocol==='https:'?'wss':'ws';
   return proto+'://'+location.host;
 }
-
+ 
 function _wsConnect(onOpen){
   if(ws&&ws.readyState===WebSocket.OPEN){onOpen&&onOpen();return;}
   _wsConnecting=true;
@@ -1768,35 +1774,19 @@ function _wsConnect(onOpen){
   ws.onclose=()=>{ws=null;_wsConnecting=false;roomStatus('Disconnected — reload to reconnect','#FF3131');};
   ws.onerror=()=>{roomStatus('✗ Cannot connect to server','#FF3131');};
 }
-
+ 
 // peerSend defined below in P2P section
-
+ 
 function roomStatus(msg,col){
   const el=document.getElementById('room-status');
   if(el){el.textContent=msg;el.style.color=col||'#FFE600';}
 }
-
+ 
 // HOST: creates a room on the server
-function makeRoom(){
-  playerName=(document.getElementById('name-in').value.trim().toUpperCase()||'PLAYER').slice(0,12);
-  const rawCode=document.getElementById('code-in').value.trim();
-  roomStatus('⏳ Connecting to server…');
-  _wsConnect(()=>{
-    ws.send(JSON.stringify({type:'createRoom',name:playerName,team:myTeam,skin:mySkin.id}));
-  });
-}
-
-// GUEST: joins a room by code
-function joinRoom(){
-  playerName=(document.getElementById('name-in').value.trim().toUpperCase()||'PLAYER').slice(0,12);
-  const code=document.getElementById('code-in').value.trim().toUpperCase();
-  if(!code){roomStatus('✗ Enter room code','#FF3131');return;}
-  roomStatus('⏳ Connecting to server…');
-  _wsConnect(()=>{
-    ws.send(JSON.stringify({type:'joinRoom',code,name:playerName,team:myTeam,skin:mySkin.id}));
-  });
-}
-
+// NOTE: makeRoom() and joinRoom() are defined below using PeerJS (P2P) —
+// this file previously had an old WebSocket-based duplicate here that was
+// dead code (silently overridden by the real versions). Removed to avoid confusion.
+ 
 function hostStartGame(){
   lobbyHide();
   document.getElementById('lobby-start-btn').style.display='none';
@@ -1806,18 +1796,18 @@ function hostStartGame(){
   }
   startGame();
 }
-
+ 
 // ═══════════════════════════════════════════════════════
 //  P2P ROOM SYSTEM  (PeerJS — no server needed)
 // ═══════════════════════════════════════════════════════
 // Replace the entire WS block with PeerJS P2P.
 // Host peer id = 'rivals-XXXX', guest id = 'rivals-XXXX-g-<ts>'
 // myPidServer = local string pid used as player key in remotePlayers
-
+ 
 let _peerObj = null;          // PeerJS Peer instance
 let _peerConns = {};          // pid -> DataConnection
 let _peerLibLoaded = false;
-
+ 
 function _loadPeerLib(cb){
   if(window.Peer){cb();return;}
   if(_peerLibLoaded){// already loading
@@ -1829,13 +1819,13 @@ function _loadPeerLib(cb){
   s.onerror=()=>roomStatus('✗ Could not load PeerJS (check internet)','#FF3131');
   document.head.appendChild(s);
 }
-
+ 
 function _pBroadcast(obj){
   const s=JSON.stringify(obj);
   Object.values(_peerConns).forEach(c=>{try{if(c&&c.open)c.send(s);}catch(e){}});
 }
 function _pSendTo(conn,obj){try{if(conn&&conn.open)conn.send(JSON.stringify(obj));}catch(e){}}
-
+ 
 function peerSend(obj){
   if(!obj.pid)obj.pid=myPidServer;
   if(obj.type==='kill'){
@@ -1846,7 +1836,7 @@ function peerSend(obj){
   }
   _pBroadcast(obj);
 }
-
+ 
 // ── HOST ──────────────────────────────────────────────
 function makeRoom(){
   playerName=(document.getElementById('name-in').value.trim().toUpperCase()||'PLAYER').slice(0,12)||'PLAYER';
@@ -1898,7 +1888,7 @@ function makeRoom(){
     });
   });
 }
-
+ 
 // ── GUEST ─────────────────────────────────────────────
 function joinRoom(){
   playerName=(document.getElementById('name-in').value.trim().toUpperCase()||'PLAYER').slice(0,12)||'PLAYER';
@@ -1931,13 +1921,13 @@ function joinRoom(){
     });
   });
 }
-
+ 
 // ── UNIFIED MESSAGE HANDLER ────────────────────────────
 function _handleP2P(msg, fromId){
   switch(msg.type){
-
+ 
     // ── LOBBY ──────────────────────────────────────────
-
+ 
     case'guestHello':{
       // Host receives new guest
       const k=msg.pid;
@@ -1952,7 +1942,7 @@ function _handleP2P(msg, fromId){
       _pBroadcast({type:'playerJoined',pid:k,name:msg.name,team:guestTeam,skin:msg.skin||'phantom'});
       break;
     }
-
+ 
     case'roomJoined':{
       // Guest receives confirmation from host
       isMultiplayer=true;
@@ -1975,7 +1965,7 @@ function _handleP2P(msg, fromId){
         hp:3,dead:false,gun:'pistol',kills:0,deaths:0,score:0,coins:0,vx:0,vy:0};
       break;
     }
-
+ 
     case'playerJoined':{
       const k=msg.pid; if(k===myPidServer)break;
       if(!remotePlayers[k])remotePlayers[k]={x:msg.team==='red'?100:AW-100,y:AH/2,angle:0,
@@ -1985,25 +1975,25 @@ function _handleP2P(msg, fromId){
       lobbyChatAdd('SYSTEM',msg.name+' joined!',false);
       break;
     }
-
+ 
     case'gameStarted':
       lobbyHide(); isMultiplayer=true;
       roomStatus('✓ Game started!','#00E5A0');
       if(!running)startGame();
       break;
-
+ 
     case'chat':
       if(msg.pid!==myPidServer)lobbyChatAdd(msg.name||'?',msg.text||'',false);
       // Host relays to all
       if(isHost)_pBroadcast({type:'chat',pid:msg.pid,name:msg.name,text:msg.text});
       break;
-
+ 
     case'backToLobby':
       endScreenReturn();
       break;
-
+ 
     // ── IN-GAME ────────────────────────────────────────
-
+ 
     case'state':{
       const k=msg.pid; if(k===myPidServer)break;
       if(!remotePlayers[k])break;
@@ -2012,7 +2002,7 @@ function _handleP2P(msg, fromId){
       remotePlayers[k].vx=msg.vx||0; remotePlayers[k].vy=msg.vy||0;
       break;
     }
-
+ 
     case'shoot':{
       const k=msg.pid; if(k===myPidServer)break;
       const rp=remotePlayers[k];
@@ -2026,7 +2016,7 @@ function _handleP2P(msg, fromId){
       }
       break;
     }
-
+ 
     case'kill':{
       const k=msg.killer_pid||msg.pid;
       if(remotePlayers[k]){
@@ -2040,13 +2030,13 @@ function _handleP2P(msg, fromId){
       upScore();
       break;
     }
-
+ 
     case'hp':{
       const k=msg.pid; if(k===myPidServer)break;
       if(remotePlayers[k]){remotePlayers[k].hp=msg.hp;if(msg.hp<=0)remotePlayers[k].dead=true;}
       break;
     }
-
+ 
     case'dead':{
       const k=msg.pid; if(k===myPidServer)break;
       if(remotePlayers[k]){remotePlayers[k].dead=true;remotePlayers[k].hp=0;}
@@ -2055,7 +2045,7 @@ function _handleP2P(msg, fromId){
       }
       break;
     }
-
+ 
     case'respawn':{
       const k=msg.pid; if(k===myPidServer)break;
       if(remotePlayers[k]){
@@ -2065,13 +2055,13 @@ function _handleP2P(msg, fromId){
       }
       break;
     }
-
+ 
     case'gun':{
       const k=msg.pid; if(k===myPidServer)break;
       if(remotePlayers[k])remotePlayers[k].gun=msg.gun;
       break;
     }
-
+ 
     case'score':{
       const k=msg.pid; if(k===myPidServer)break;
       if(remotePlayers[k]){
@@ -2082,12 +2072,12 @@ function _handleP2P(msg, fromId){
       upScore();
       break;
     }
-
+ 
     case'duelRoundWon':
       duelRounds.bot=(duelRounds.bot||0)+1;
       if(!duelBetween)endDuelRound('BOT');
       break;
-
+ 
     case'duelNewRound':{
       const k=Object.keys(remotePlayers)[0];
       if(k&&remotePlayers[k]){
@@ -2100,10 +2090,10 @@ function _handleP2P(msg, fromId){
     }
   }
 }
-
-
-
-
+ 
+ 
+ 
+ 
 // ═══════════════════════════════════
 //  START GAME
 // ═══════════════════════════════════
@@ -2118,7 +2108,7 @@ async function startGame(){
   // playerName already set by makeRoom/joinRoom if coming from code flow
   if(!playerName)playerName=(document.getElementById('name-in').value.trim().toUpperCase()||'PLAYER').slice(0,12)||'PLAYER';
   // isMultiplayer is already set before startGame is called from makeRoom/joinRoom
-
+ 
   showScreen('game');
   map={theme:THEMES[Math.floor(Math.random()*THEMES.length)],obs:mkObs()};
   document.getElementById('map-lbl').textContent=map.theme.name+(isMultiplayer?' [ROOM '+roomCode+']':'');
@@ -2149,7 +2139,7 @@ async function startGame(){
   const duelBanner=document.getElementById('duel-banner');
   if(duelHUD)duelHUD.style.display=mode.id==='1v1'?'block':'none';
   if(duelBanner)duelBanner.style.display='none';
-
+ 
   if(mode.id==='1v1'){
     map.obs=[
       {x:AW/2-55,y:AH/2-55,w:110,h:110},
@@ -2171,7 +2161,7 @@ async function startGame(){
     const botSide=isHost||!isMultiplayer?AW-260:260;
     const botTeam=myTeam==='red'?'blue':'red';
     const botSkin=SKINS.filter(s=>s.id!==mySkin.id)[Math.floor(Math.random()*(SKINS.length-1))];
-    const bot=new Entity(botSide,py,botTeam,'RIVAL',false,botSkin,GUN_MAP['pistol']);
+    const bot=new Entity(botSide,py,botTeam,'RIVAL',false,botSkin,randomBotGun(equippedGunId));
     bot.aggro=0.88; duelBot=bot; ents.push(bot);
     for(let i=0;i<2;i++)spawnPup();
     upDuelHUD();
@@ -2183,15 +2173,19 @@ async function startGame(){
     // Load saved coin bank (account or guest)
     if(_authUser&&_authUser.stats&&_authUser.stats.coins)player.coins=_authUser.stats.coins;
     else{const gc=_guestLoad();if(gc){player.coins=gc.coins||0;}}
-    for(let i=0;i<5;i++){
-      const t=mode.teams?(i<4?myTeam:(myTeam==='red'?'blue':'red')):(i%2===0?'red':'blue');
-      const nm=mode.teams?(t==='red'?BOT_NAMES_R:BOT_NAMES_B)[i%4]:BOT_NAMES_F[i%BOT_NAMES_F.length];
-      const sk=SKINS[Math.floor(Math.random()*SKINS.length)];
-      const bx=t==='red'?80+Math.random()*120:AW-80-Math.random()*120;
-      const by=80+Math.random()*(AH-160);
-      const bot=new Entity(bx,by,t,nm,false,sk,GUN_MAP['pistol']);
-      bot.aggro=.4+Math.random()*.6; bot.coins=Math.floor(Math.random()*200);
-      ffaK[nm]=0; ents.push(bot);
+    // Only fill the match with AI bots in local/solo play — in a real
+    // multiplayer room, other humans fill those slots instead.
+    if(!isMultiplayer){
+      for(let i=0;i<5;i++){
+        const t=mode.teams?(i<4?myTeam:(myTeam==='red'?'blue':'red')):(i%2===0?'red':'blue');
+        const nm=mode.teams?(t==='red'?BOT_NAMES_R:BOT_NAMES_B)[i%4]:BOT_NAMES_F[i%BOT_NAMES_F.length];
+        const sk=SKINS[Math.floor(Math.random()*SKINS.length)];
+        const bx=t==='red'?80+Math.random()*120:AW-80-Math.random()*120;
+        const by=80+Math.random()*(AH-160);
+        const bot=new Entity(bx,by,t,nm,false,sk,randomBotGun(equippedGunId));
+        bot.aggro=.4+Math.random()*.6; bot.coins=Math.floor(Math.random()*200);
+        ffaK[nm]=0; ents.push(bot);
+      }
     }
     for(let i=0;i<3;i++)spawnPup();
   }
@@ -2211,7 +2205,7 @@ async function startGame(){
   running=true;hasPlayed=true;lastT=performance.now();gameStartT=performance.now();
   requestAnimationFrame(loop);
 }
-
+ 
 // ═══════════════════════════════════
 //  MENU LOGIC
 // ═══════════════════════════════════
@@ -2235,7 +2229,7 @@ function switchTab(id){
   if(id==='shop')buildMenuShop();
   if(id==='inventory')buildInvWeapons();
 }
-
+ 
 function buildInvWeapons(){
   const grid=document.getElementById('inv-gun-cards');
   if(!grid)return;
@@ -2245,11 +2239,11 @@ function buildInvWeapons(){
   if(player&&!gameOver) owned=ownedGuns;
   else if(_authUser&&_authUser.stats) owned=new Set(_authUser.stats.ownedGuns||['pistol']);
   else owned=_guestOwnedGuns()||new Set(['pistol']);
-
+ 
   const myGuns=GUNS.filter(g=>owned.has(g.id)||g.price===0);
   // Always include pistol
   if(!myGuns.find(g=>g.id==='pistol')) myGuns.unshift(GUN_MAP['pistol']);
-
+ 
   myGuns.forEach(g=>{
     const isEquipped=equippedGunId===g.id;
     const d=document.createElement('div');
@@ -2272,12 +2266,12 @@ function buildInvWeapons(){
     `;
     grid.appendChild(d);
   });
-
+ 
   if(myGuns.length===0){
     grid.innerHTML='<div style="font-family:\'Press Start 2P\',monospace;font-size:.3rem;color:#5a5a90;padding:1rem">No weapons owned yet.<br><br>Earn coins in matches<br>and visit the SHOP!</div>';
   }
 }
-
+ 
 function invEquipGun(gid){
   const g=GUN_MAP[gid];
   if(!g)return;
@@ -2347,7 +2341,7 @@ function _menuCoins(){
   if(_authUser&&_authUser.stats)return _authUser.stats.coins||0;
   return _guestCoins()||0;
 }
-
+ 
 function buildMenuShop(){
   const gc=document.getElementById('gun-cards-menu');
   if(!gc)return;
@@ -2399,7 +2393,7 @@ function buildMenuShop(){
     gc.appendChild(d);
   });
 }
-
+ 
 function menuBuyGun(gid){
   const g=GUN_MAP[gid];if(!g||g.price===0)return;
   // Determine which store to deduct from
@@ -2437,11 +2431,11 @@ function menuBuyGun(gid){
   }
   buildMenuShop();
 }
-
-
+ 
+ 
 // ── LOBBY PANEL ─────────────────────────────────────────────────────────────
 const lobbyPlayers = {}; // pid/key -> {name, team, skin, isMe}
-
+ 
 function lobbyShow(){
   document.getElementById('lobby-panel').classList.add('show');
 }
@@ -2499,15 +2493,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   const inp=document.getElementById('lobby-chat-input');
   if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')lobbyChatSend();});
 });
-
-
+ 
+ 
 // ── WIN SCREEN ────────────────────────────────────────────────────────────────
 function showWinScreen(won, kills, deaths){
   const ws = document.getElementById('win-screen');
   const lbl = document.getElementById('win-label');
   const killEl = document.getElementById('win-kills');
   const crown = document.getElementById('win-crown');
-
+ 
   if(won){
     lbl.textContent = 'YOU WIN!';
     lbl.style.color = 'var(--y)';
@@ -2521,7 +2515,7 @@ function showWinScreen(won, kills, deaths){
   }
   killEl.innerHTML = '<span style="color:var(--y)">K: '+kills+'</span>  <span style="color:#5a5a90">D: '+deaths+'</span>';
   killEl.style.color = '#aaa';
-
+ 
   // Confetti burst for winner
   if(won){
     const pc = document.getElementById('win-particles');
@@ -2542,36 +2536,36 @@ function showWinScreen(won, kills, deaths){
       document.head.appendChild(s);
     }
   }
-
+ 
   ws.classList.add('show');
 }
-
+ 
 function hideWinScreen(){
   document.getElementById('win-screen').classList.remove('show');
 }
-
+ 
 function winPlayAgain(){
   hideWinScreen();
   endScreenReturn();
 }
-
+ 
 function winGoMenu(){
   hideWinScreen();
   goMenu();
 }
-
-
+ 
+ 
 // ═══════════════════════════════════════════════════════
 //  MOBILE / TOUCH CONTROLS
 // ═══════════════════════════════════════════════════════
 const isMobile = /Android|iPhone|iPad|iPod|Touch/i.test(navigator.userAgent) || ('ontouchstart' in window);
 if(isMobile) document.body.classList.add('isMobile');
-
+ 
 // Joystick state
 const joyL = {active:false, id:-1, bx:0, by:0, dx:0, dy:0};
 const joyR = {active:false, id:-1, bx:0, by:0, dx:0, dy:0};
 const JOY_MAX = 45; // max radius from center
-
+ 
 function joyShow(side, x, y){
   const base  = document.getElementById('joy-'+side+'-base');
   const stick = document.getElementById('joy-'+side+'-stick');
@@ -2596,12 +2590,12 @@ function joyHide(side){
   document.getElementById('joy-'+side+'-base').style.display='none';
   document.getElementById('joy-'+side+'-stick').style.display='none';
 }
-
+ 
 // Prevent default touch to stop scroll/zoom during game
 document.addEventListener('touchmove', e=>{
   if(document.getElementById('game').classList.contains('active')) e.preventDefault();
 },{passive:false});
-
+ 
 document.addEventListener('touchstart', e=>{
   if(!document.getElementById('game').classList.contains('active')) return;
   for(const t of e.changedTouches){
@@ -2623,7 +2617,7 @@ document.addEventListener('touchstart', e=>{
     }
   }
 },{passive:false});
-
+ 
 document.addEventListener('touchmove', e=>{
   if(!document.getElementById('game').classList.contains('active')) return;
   for(const t of e.changedTouches){
@@ -2652,7 +2646,7 @@ document.addEventListener('touchmove', e=>{
     }
   }
 },{passive:false});
-
+ 
 document.addEventListener('touchend', e=>{
   if(!document.getElementById('game').classList.contains('active')) return;
   for(const t of e.changedTouches){
@@ -2667,7 +2661,7 @@ document.addEventListener('touchend', e=>{
     }
   }
 },{passive:false});
-
+ 
 // Inject joystick movement into player update
 // We patch keys via a proxy — read joyL in player update
 const _origUpdate = Entity.prototype.update;
@@ -2682,49 +2676,49 @@ Entity.prototype.update = function(dt){
   }
   _origUpdate.call(this, dt);
 };
-
+ 
 // Patch the movement section to read _mobDx/_mobDy when on mobile
 // We override keys reading for the player only
 const _origKeys = {};
 function getMobDx(){ return (player && isMobile) ? (player._mobDx||0) : 0; }
 function getMobDy(){ return (player && isMobile) ? (player._mobDy||0) : 0; }
-
+ 
 // Action buttons
 document.addEventListener('DOMContentLoaded', ()=>{
   const reloadBtn = document.getElementById('mob-reload');
   const shopBtn   = document.getElementById('mob-shop');
   const swordBtn  = document.getElementById('mob-sword');
-
+ 
   if(reloadBtn) reloadBtn.addEventListener('touchstart', e=>{
     e.stopPropagation();
     if(player&&!player.reloading&&player.ammo<player.gun.ammo){
       player.reloading=true; player.reloadT=player.gun.reload;
     }
   },{passive:true});
-
+ 
   if(shopBtn) shopBtn.addEventListener('touchstart', e=>{
     e.stopPropagation();
     if(shopOpen) closeShop(); else openShop();
   },{passive:true});
-
+ 
   if(swordBtn) swordBtn.addEventListener('touchstart', e=>{
     e.stopPropagation();
     if(player&&!player.dead) player.startAtk();
   },{passive:true});
 });
-
-
+ 
+ 
 // ═══════════════════════════════════════════════════════
 //  CHEAT CODES
 // ═══════════════════════════════════════════════════════
 let cheatUnlocked = false;
-
+ 
 function submitCheat(){
   const inp = document.getElementById('cheat-in');
   const msg = document.getElementById('cheat-msg');
   const code = inp.value.trim().toLowerCase();
   inp.value = '';
-
+ 
   if(code === 'ven7709'){
     // ── GOD GUN cheat ────────────────────────────────────
     cheatUnlocked = true;
@@ -2743,7 +2737,7 @@ function submitCheat(){
     msg.textContent = '✓ GOD GUN UNLOCKED!';
     msg.style.color = '#00E5A0';
     setTimeout(()=>{inp.classList.remove('activated');msg.textContent='';},2500);
-
+ 
   } else if(code === 'testbot'){
     // ── TEST BOT cheat — spawn a bot that appears as a real player ──
     if(!running || gameOver){
@@ -2758,7 +2752,7 @@ function submitCheat(){
     const tbTeam = myTeam==='red'?'blue':'red';
     const tbx = tbTeam==='red'?260:AW-260;
     const tby = AH/2;
-    const tb = new Entity(tbx, tby, tbTeam, 'TEST BOT', false, tbSkin, GUN_MAP['pistol']);
+    const tb = new Entity(tbx, tby, tbTeam, 'TEST BOT', false, tbSkin, randomBotGun(equippedGunId));
     tb.aggro = 0.5;
     tb.isTestBot = true; // flag for special rendering
     ents.push(tb);
@@ -2777,7 +2771,7 @@ function submitCheat(){
     msg.style.color = '#00E5A0';
     addFeed('TEST BOT','JOINED',tbTeam);
     setTimeout(()=>{inp.classList.remove('activated');msg.textContent='';},2500);
-
+ 
   } else {
     msg.textContent = '✗ INVALID CODE';
     msg.style.color = '#FF3131';
@@ -2785,13 +2779,13 @@ function submitCheat(){
     setTimeout(()=>{inp.classList.remove('denied');msg.textContent='';},1500);
   }
 }
-
+ 
 // Enter key support
 document.addEventListener('DOMContentLoaded',()=>{
   const ci=document.getElementById('cheat-in');
   if(ci)ci.addEventListener('keydown',e=>{if(e.key==='Enter')submitCheat();});
 });
-
+ 
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function goMenu(){
   hideWinScreen();
@@ -2809,7 +2803,7 @@ function goMenu(){
   showScreen('menu');
   buildMenuShop(); // refresh coins after game
 }
-
+ 
 // ═══════════════════════════════════
 //  INPUT
 // ═══════════════════════════════════
@@ -2830,27 +2824,27 @@ window.addEventListener('keydown',e=>{
 });
 window.addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
 window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
-
-
-
+ 
+ 
+ 
 // ═══════════════════════════════════════════════════════
 //  AUTH SYSTEM — localStorage, no email, no server
 // ═══════════════════════════════════════════════════════
 let _authUser=null; // {username, stats:{kills,deaths,wins,gamesPlayed,coins}}
-
+ 
 // Simple non-cryptographic hash (good enough for local storage)
 function _hash(str){
   let h=5381;
   for(let i=0;i<str.length;i++)h=((h<<5)+h)^str.charCodeAt(i);
   return (h>>>0).toString(36);
 }
-
+ 
 function _accts(){
   try{return JSON.parse(localStorage.getItem('rivals_accounts')||'{}');}
   catch(e){return {};}
 }
 function _saveAccts(a){localStorage.setItem('rivals_accounts',JSON.stringify(a));}
-
+ 
 function _sessionSave(username){
   localStorage.setItem('rivals_session',username);
 }
@@ -2860,7 +2854,7 @@ function _sessionLoad(){
 function _sessionClear(){
   localStorage.removeItem('rivals_session');
 }
-
+ 
 function authTab(tab){
   document.getElementById('atab-login').classList.toggle('on',tab==='login');
   document.getElementById('atab-signup').classList.toggle('on',tab==='signup');
@@ -2869,12 +2863,12 @@ function authTab(tab){
   document.getElementById('auth-msg').textContent='';
   document.getElementById('auth-submit').dataset.tab=tab;
 }
-
+ 
 function _authMsg(txt,col='#FF3131'){
   const el=document.getElementById('auth-msg');
   el.textContent=txt;el.style.color=col;
 }
-
+ 
 function authSubmit(){
   const tab=document.getElementById('auth-submit').dataset.tab||'login';
   const user=document.getElementById('auth-user').value.trim().toUpperCase().slice(0,12);
@@ -2899,7 +2893,7 @@ function authSubmit(){
     _doLogin(user,acct);
   }
 }
-
+ 
 function _doLogin(username,acct){
   const stats=acct.stats||{kills:0,deaths:0,wins:0,gamesPlayed:0,totalCoins:0,coins:0,ownedGuns:['pistol']};
   if(stats.coins===undefined)stats.coins=0;
@@ -2911,7 +2905,7 @@ function _doLogin(username,acct){
   _applyLoginToMenu();
   showScreen('menu');
 }
-
+ 
 function authGuest(){
   _authUser=null;
   _sessionClear();
@@ -2920,7 +2914,7 @@ function authGuest(){
   _applyLoginToMenu();
   showScreen('menu');
 }
-
+ 
 function authLogout(){
   _authUser=null;
   _sessionClear();
@@ -2934,24 +2928,27 @@ function authLogout(){
   authTab('login');
   showScreen('auth');
 }
-
+ 
 function _applyLoginToMenu(){
   const bar=document.getElementById('profile-bar');
   const nm=document.getElementById('profile-name');
   const st=document.getElementById('profile-stats');
+  const logoutBtn=document.getElementById('profile-logout');
   if(_authUser){
     const s=_authUser.stats;
     nm.textContent='▶ '+_authUser.username;
     st.textContent='💰'+(s.coins||0)+' · K:'+s.kills+' · D:'+s.deaths+' · WINS:'+s.wins+' · GAMES:'+s.gamesPlayed;
     document.getElementById('name-in').value=_authUser.username;
     playerName=_authUser.username;
+    if(logoutBtn)logoutBtn.textContent='SIGN OUT';
   } else {
     nm.textContent='GUEST MODE';
     st.textContent='STATS NOT SAVED — COINS NOT SAVED';
     document.getElementById('name-in').value='';
+    if(logoutBtn)logoutBtn.textContent='SIGN IN / SIGN UP';
   }
 }
-
+ 
 // Save stats back to localStorage after a game ends (or mid-game on purchase)
 function _saveStats(won){
   if(!_authUser)return;
@@ -2972,7 +2969,7 @@ function _saveStats(won){
   _saveAccts(accts);
   _applyLoginToMenu();
 }
-
+ 
 // Save just coins+guns mid-game (called on every purchase)
 function _savePersistent(){
   if(!_authUser)return;
@@ -2988,7 +2985,7 @@ function _savePersistent(){
   _saveAccts(accts);
   _applyLoginToMenu();
 }
-
+ 
 // ── GUEST persistence (no account needed) ──────────────────────────────────
 function _guestSave(){
   if(_authUser)return; // logged-in users handled by _savePersistent
@@ -3010,9 +3007,9 @@ function _guestCoins(){
 function _guestOwnedGuns(){
   const d=_guestLoad();return d?new Set(d.ownedGuns||['pistol']):new Set(['pistol']);
 }
-
+ 
 // Hook into endGame to save stats
-
+ 
 function endScreenReturn(){
   if(isMultiplayer){
     // Go back to lobby — keep peer connection alive
@@ -3036,10 +3033,9 @@ function endScreenReturn(){
     goMenu();
   }
 }
-
-const _origEndGame=endGame;
+ 
 function endGame(txt,cls){
-  _origEndGame(txt,cls);
+  _endGameCore(txt,cls);
   if(gameOver){
     const won=(cls==='y')||(cls==='r'&&myTeam==='red')||(cls==='b'&&myTeam==='blue');
     _saveStats(won);
@@ -3052,7 +3048,7 @@ function endGame(txt,cls){
     }
   }
 }
-
+ 
 // On page load: check for saved session
 window.addEventListener('load',()=>{
   // Initialize auth tab state
@@ -3075,7 +3071,7 @@ window.addEventListener('load',()=>{
   authGuest();
   showScreen('menu');
 },true); // useCapture=true so this fires BEFORE the existing load handler
-
+ 
 window.addEventListener('load',()=>{
   cvs=document.getElementById('gc');ctx=cvs.getContext('2d',{alpha:false});
   const resize=()=>{cvs.width=window.innerWidth;cvs.height=window.innerHeight;};
@@ -3091,7 +3087,7 @@ window.addEventListener('load',()=>{
   cvs.addEventListener('contextmenu',e=>e.preventDefault());
   buildMenu();
 });
-
+ 
 function togglePause(){
   if(!running&&!paused)return;
   paused=!paused;
@@ -3100,7 +3096,8 @@ function togglePause(){
   else running=false;
 }
 function exitToMenu(){paused=false;document.getElementById('pause').style.display='none';goMenu();}
-
+ 
 </script>
 </body>
 </html>
+ 
