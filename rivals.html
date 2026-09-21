@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -290,13 +291,24 @@ tr.me td:first-child{border-left:3px solid var(--y)}
 #cheat-btn{font-family:'Press Start 2P',monospace;font-size:.24rem;background:transparent;border:2px solid #1a1a30;color:#3a3a60;padding:.45rem .6rem;cursor:pointer;transition:all .18s;white-space:nowrap}
 #cheat-btn:hover{border-color:#5a5a90;color:#aaa}
 #cheat-msg{font-family:'Press Start 2P',monospace;font-size:.22rem;min-height:1em;margin-top:.2rem;text-align:center}
+ 
+/* ── CCS CONTROL ZONE HUD ── */
+#ccs-bar{display:none;position:absolute;top:5.2rem;left:50%;transform:translateX(-50%);gap:.55rem;align-items:stretch;z-index:15}
+.ccs-zone{display:flex;flex-direction:column;align-items:center;gap:.3rem;background:rgba(5,5,8,.92);border:1px solid rgba(255,255,255,.08);padding:.4rem .55rem;min-width:56px;transition:border-color .25s,box-shadow .25s}
+.ccs-zone.contested{animation:ccsPulse 1s ease-in-out infinite}
+@keyframes ccsPulse{0%,100%{box-shadow:0 0 0 rgba(255,230,0,0)}50%{box-shadow:0 0 12px rgba(255,230,0,.55)}}
+.ccs-zone-lbl{font-family:'Press Start 2P',monospace;font-size:.32rem;transition:color .25s;letter-spacing:.05em}
+.ccs-zone-sub{font-family:'Press Start 2P',monospace;font-size:.18rem;color:#5a5a90;min-height:1em;letter-spacing:.05em}
+.ccs-zone-track{width:46px;height:5px;background:rgba(255,255,255,.09);border-radius:3px;overflow:hidden;position:relative}
+.ccs-zone-fill{height:100%;width:0%;border-radius:3px;transition:width .2s linear,background .25s;margin-left:auto}
+.ccs-zone-fill.from-left{margin-left:0;margin-right:auto}
 </style>
 </head>
 <body>
 <div id="flash"></div>
  
 <!-- AUTH -->
-<div id="auth" class="screen" style="display:none">
+<div id="auth" class="screen">
   <div id="auth-box">
     <div id="auth-logo">RIVALS</div>
     <div id="auth-sub">SIGN IN TO SAVE YOUR STATS</div>
@@ -397,8 +409,17 @@ tr.me td:first-child{border-left:3px solid var(--y)}
     <div id="tp-code" class="tp">
       <div class="code-wrap">
         <div>
+          <span class="lbl">ROOM SIZE</span>
+          <div class="code-btns" id="room-size-row" style="grid-template-columns:repeat(4,1fr)">
+            <button class="cbtn make on" data-size="2" onclick="pickRoomSize(2,this)">1v1</button>
+            <button class="cbtn make" data-size="4" onclick="pickRoomSize(4,this)">2v2</button>
+            <button class="cbtn make" data-size="6" onclick="pickRoomSize(6,this)">3v3</button>
+            <button class="cbtn make" data-size="8" onclick="pickRoomSize(8,this)">4v4</button>
+          </div>
+        </div>
+        <div>
           <span class="lbl">4-DIGIT ROOM CODE</span>
-          <input id="code-in" class="code-field" type="text" placeholder="e.g. 1234" maxlength="4" autocomplete="off" spellcheck="false" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,4)"/>
+          <input id="code-in" class="code-field" type="text" placeholder="ROOM CODE" maxlength="6" autocomplete="off" spellcheck="false" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6)"/>
         </div>
         <div class="code-btns">
           <button class="cbtn make" onclick="makeRoom()">🌐 CREATE ROOM</button>
@@ -407,7 +428,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
         <div id="room-code-big"></div>
         <div id="room-status"></div>
         <button id="lobby-start-btn" onclick="hostStartGame()" style="display:none;width:100%;font-family:'Press Start 2P',monospace;font-size:.5rem;letter-spacing:.1em;background:var(--y);color:#000;border:none;cursor:pointer;padding:.9rem;margin-top:.4rem;transition:transform .15s,filter .15s">▶ START GAME</button>
-        <div class="code-steps">1️⃣ CREATE ROOM → SHARE 4-DIGIT CODE<br>2️⃣ FRIEND ENTERS CODE → CLICKS JOIN<br>3️⃣ GAME STARTS AUTOMATICALLY ✓</div>
+        <div class="code-steps">1️⃣ HOST PICKS ROOM SIZE &amp; CREATES ROOM<br>2️⃣ FRIENDS ENTER CODE → CLICK JOIN (TEAMS AUTO-BALANCED)<br>3️⃣ HOST CLICKS START WHEN READY ✓</div>
       </div>
     </div>
   </div>
@@ -476,10 +497,10 @@ tr.me td:first-child{border-left:3px solid var(--y)}
     <div id="flash2" style="position:fixed;inset:0;pointer-events:none;z-index:4;opacity:0;transition:opacity .12s;background:rgba(255,49,49,.18)"></div>
     <div id="shop-hint">[B] OPEN SHOP</div>
     <!-- CCS zone status bar -->
-    <div id="ccs-bar" style="display:none;position:absolute;top:5.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;align-items:center;font-family:'Press Start 2P',monospace;font-size:.22rem;background:rgba(5,5,8,.88);border:1px solid rgba(255,255,255,.06);padding:.3rem .7rem">
-      <span id="ccs-z0" style="padding:.15rem .4rem;border:1px solid #333">A</span>
-      <span id="ccs-z1" style="padding:.15rem .4rem;border:1px solid #333">B</span>
-      <span id="ccs-z2" style="padding:.15rem .4rem;border:1px solid #333">C</span>
+    <div id="ccs-bar">
+      <div class="ccs-zone" id="ccs-zone-0"><div class="ccs-zone-lbl" id="ccs-zone-0-lbl">A</div><div class="ccs-zone-track"><div class="ccs-zone-fill" id="ccs-zone-0-fill"></div></div><div class="ccs-zone-sub" id="ccs-zone-0-sub"></div></div>
+      <div class="ccs-zone" id="ccs-zone-1"><div class="ccs-zone-lbl" id="ccs-zone-1-lbl">B</div><div class="ccs-zone-track"><div class="ccs-zone-fill" id="ccs-zone-1-fill"></div></div><div class="ccs-zone-sub" id="ccs-zone-1-sub"></div></div>
+      <div class="ccs-zone" id="ccs-zone-2"><div class="ccs-zone-lbl" id="ccs-zone-2-lbl">C</div><div class="ccs-zone-track"><div class="ccs-zone-fill" id="ccs-zone-2-fill"></div></div><div class="ccs-zone-sub" id="ccs-zone-2-sub"></div></div>
     </div>
     <!-- 1V1 DUEL HUD -->
     <div id="duel-hud" style="display:none;position:absolute;top:.5rem;left:50%;transform:translateX(-50%);font-family:'Press Start 2P',monospace;font-size:.3rem;color:#FFE600;background:rgba(5,5,8,.9);border:1px solid rgba(255,230,0,.3);padding:.3rem .8rem;white-space:nowrap;letter-spacing:.05em;z-index:20;text-align:center">
@@ -540,6 +561,7 @@ tr.me td:first-child{border-left:3px solid var(--y)}
   <div style="display:flex;flex-direction:column;gap:.7rem;width:100%;max-width:270px">
     <button onclick="togglePause()" style="font-family:'Press Start 2P',monospace;font-size:.42rem;background:transparent;border:2px solid #FFE600;color:#FFE600;padding:.8rem;cursor:pointer" onmouseover="this.style.background='rgba(255,230,0,.12)'" onmouseout="this.style.background='transparent'">▶ RESUME</button>
     <button onclick="openShop()" style="font-family:'Press Start 2P',monospace;font-size:.42rem;background:transparent;border:2px solid #00E5A0;color:#00E5A0;padding:.8rem;cursor:pointer" onmouseover="this.style.background='rgba(0,229,160,.1)'" onmouseout="this.style.background='transparent'">🛒 GUN SHOP</button>
+    <button id="pause-reset-btn" onclick="adminResetRound()" style="display:none;font-family:'Press Start 2P',monospace;font-size:.42rem;background:transparent;border:2px solid var(--y);color:var(--y);padding:.8rem;cursor:pointer" onmouseover="this.style.background='rgba(255,230,0,.1)'" onmouseout="this.style.background='transparent'">🔄 RESET ROUND (ADMIN)</button>
     <button onclick="exitToMenu()" style="font-family:'Press Start 2P',monospace;font-size:.42rem;background:transparent;border:2px solid #FF3131;color:#FF3131;padding:.8rem;cursor:pointer" onmouseover="this.style.background='rgba(255,49,49,.12)'" onmouseout="this.style.background='transparent'">✕ EXIT TO MENU</button>
   </div>
 </div>
@@ -970,6 +992,28 @@ class Entity{
         }
       }
     }
+    // KOTH: bots gravitate toward the hill instead of wandering off
+    if(mode.id==='koth'&&(!this.target||Math.random()<.3)){
+      const hx=AW/2,hy=AH/2;
+      const dz=Math.hypot(hx-this.x,hy-this.y);
+      if(dz>60){this.vx+=(hx-this.x)/dz*BSPD*.35;this.vy+=(hy-this.y)/dz*BSPD*.35;}
+    }
+    // CTF: bots actively go grab the enemy flag, or rush it home once carrying it
+    if(mode.id==='ctf'){
+      const enemyTeam=this.team==='red'?'blue':'red';
+      const ef=flags[enemyTeam],of=flags[this.team];
+      if(ef&&ef.carrier===this){
+        // Carrying the flag — beeline for our own base, overriding normal combat movement
+        const hx=of.homeX,hy=of.homeY;
+        const dz=Math.hypot(hx-this.x,hy-this.y)||1;
+        this.vx=(hx-this.x)/dz*sp*1.05+ax*sp*.3;
+        this.vy=(hy-this.y)/dz*sp*1.05+ay*sp*.3;
+      }else if(ef&&!ef.carrier&&(!this.target||Math.random()<.35)){
+        const fx=ef.dropped?ef.dropX:ef.homeX,fy=ef.dropped?ef.dropY:ef.homeY;
+        const dz=Math.hypot(fx-this.x,fy-this.y);
+        if(dz>30){this.vx+=(fx-this.x)/dz*BSPD*.4;this.vy+=(fy-this.y)/dz*BSPD*.4;}
+      }
+    }
     // Bots occasionally buy a better gun when they have enough "coins"
     if(mode.id!=='gun'&&this.coins>=200&&Math.random()<.001){
       const affordable=GUNS.filter(g=>g.price>0&&g.price<=this.coins&&!this.ownedGuns.has(g.id));
@@ -1078,6 +1122,9 @@ class Bullet{
       if(mode.teams&&e.team===this.team)continue;
       if(Math.hypot(e.x-this.x,e.y-this.y)<RAD+2){
         e.takeDmg(this.owner,this.dmg,false);
+        if(isMultiplayer&&this.owner&&this.owner.isP){
+          peerSend({type:'hit',target:e._servPid||null,dmg:this.dmg});
+        }
         this.dead=true;burst(this.x,this.y,this.col,10);
         shakeIt(this.gid==='sniper'?9:this.gid==='shotgun'?7:3);return;
       }
@@ -1365,21 +1412,32 @@ function upScore(){
     r.className='sc r';b.className='sc b';
     sep.innerHTML='CAPS<br>OF '+mode.target;
   }else if(mode.id==='ccs'){
-    if(ccsScore.red>=mode.target)endGame('RED TEAM','r');
-    else if(ccsScore.blue>=mode.target)endGame('BLUE TEAM','b');
-  }else if(mode.id==='ccs'){
     r.textContent=Math.floor(ccsScore.red);b.textContent=Math.floor(ccsScore.blue);
     r.className='sc r';b.className='sc b';
     sep.innerHTML='PTS<br>TO '+mode.target;
-    // Update zone HUD pips
+    // Update the per-zone control cards: owner color, capture-progress fill, contested pulse
     const bar=document.getElementById('ccs-bar');
-    if(bar){bar.style.display='flex';['ccs-z0','ccs-z1','ccs-z2'].forEach((id,i)=>{
-      const z=ccsZones[i];if(!z)return;
-      const el=document.getElementById(id);if(!el)return;
-      const col=z.owner==='red'?'var(--r)':z.owner==='blue'?'var(--b)':'#555';
-      el.style.color=col;el.style.borderColor=col;
-      el.textContent=z.label[0]+(z.owner?(' '+z.owner[0].toUpperCase()):'');
-    });}
+    if(bar){
+      bar.style.display='flex';
+      ['ccs-zone-0','ccs-zone-1','ccs-zone-2'].forEach((id,i)=>{
+        const z=ccsZones[i];if(!z)return;
+        const card=document.getElementById(id);if(!card)return;
+        const lbl=document.getElementById(id+'-lbl');
+        const fill=document.getElementById(id+'-fill');
+        const sub=document.getElementById(id+'-sub');
+        const col=z.owner==='red'?'var(--r)':z.owner==='blue'?'var(--b)':'#5a5a90';
+        card.style.borderColor=z.owner?col:'rgba(255,255,255,.08)';
+        card.classList.toggle('contested',!!z.contested);
+        if(lbl){lbl.textContent=z.label[0];lbl.style.color=col;}
+        if(fill){
+          const pct=Math.min(100,Math.abs(z.capProg)*100);
+          fill.style.width=pct+'%';
+          fill.style.background=z.capProg>0?'var(--r)':z.capProg<0?'var(--b)':'#5a5a90';
+          fill.classList.toggle('from-left',z.capProg<0);
+        }
+        if(sub)sub.textContent=z.contested?'⚔ CONTESTED':z.owner?z.owner.toUpperCase():'NEUTRAL';
+      });
+    }
   }else if(mode.id==='gun'){
     r.textContent=player?(player.gunIdx+1):1;b.textContent=GUN_ORDER.length;
     r.className='sc f';b.className='sc f';
@@ -1557,8 +1615,7 @@ function buyGun(gid){
     upAmmo();buildGunGrid();
     showShopMsg('✓ EQUIPPED '+g.name+'!','#00E5A0');
     _savePersistent();
-    if(isMultiplayer)peerSend({type:'gun',gun:gid});
-    return;
+    if(isMultiplayer){ peerSend({type:'buyGun',gun:gid}); return; }
   }
   if(player.coins<g.price){
     showShopMsg('✗ NEED '+g.price+' COINS (have '+player.coins+')','#FF3131');
@@ -1640,6 +1697,7 @@ function loop(ts){
       }
       // Capture progress: contested = no progress, else advance toward the team
       const contested=inR>0&&inB>0;
+      z.contested=contested;
       if(!contested){
         if(inR>0){
           z.capProg=Math.min(1,z.capProg+(inR*dt*0.4));
@@ -1758,350 +1816,318 @@ function render(){
 //  WEBSOCKET ROOM SYSTEM (connects to rivals_server.py)
 // ═══════════════════════════════════
 let ws=null, myPidServer=null, isHost=false, roomCode='';
-let _wsConnecting=false;
+let roomMaxTotal=2; // total players allowed in the room (2=1v1,4=2v2,6=3v3,8=4v4)
+function pickRoomSize(n,btn){
+  roomMaxTotal=n;
+  document.querySelectorAll('#room-size-row .cbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+// ═══════════════════════════════════════════════════════
+//  WEBSOCKET MULTIPLAYER — talks to rivals_server.py
+//  When running on Railway/GitHub the server serves this
+//  HTML and handles WS on the same host:port.
+// ═══════════════════════════════════════════════════════
+let ws = null;
+let myPidServer = null;   // integer pid assigned by server
+let isHost = false;
+let roomCode = '';
+let _myRoomCode = '';     // 6-char code shown in lobby
  
 function _wsUrl(){
-  const proto=location.protocol==='https:'?'wss':'ws';
-  return proto+'://'+location.host;
+  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+  return proto + '://' + location.host;
 }
  
-function _wsConnect(onOpen){
-  if(ws&&ws.readyState===WebSocket.OPEN){onOpen&&onOpen();return;}
-  _wsConnecting=true;
-  ws=new WebSocket(_wsUrl());
-  ws.onopen=()=>{_wsConnecting=false;onOpen&&onOpen();};
-  ws.onmessage=e=>{try{handlePeer(JSON.parse(e.data));}catch(_){}};
-  ws.onclose=()=>{ws=null;_wsConnecting=false;roomStatus('Disconnected — reload to reconnect','#FF3131');};
-  ws.onerror=()=>{roomStatus('✗ Cannot connect to server','#FF3131');};
+function roomStatus(msg, col){
+  const el = document.getElementById('room-status');
+  if(el){ el.textContent = msg; el.style.color = col || '#FFE600'; }
 }
  
-// peerSend defined below in P2P section
- 
-function roomStatus(msg,col){
-  const el=document.getElementById('room-status');
-  if(el){el.textContent=msg;el.style.color=col||'#FFE600';}
+function _wsEnsure(cb){
+  if(ws && ws.readyState === WebSocket.OPEN){ cb(); return; }
+  roomStatus('⏳ Connecting to server…');
+  ws = new WebSocket(_wsUrl());
+  ws.onopen  = () => { roomStatus('✓ Connected', '#00E5A0'); cb(); };
+  ws.onclose = () => {
+    ws = null;
+    roomStatus('Disconnected — reload to rejoin', '#FF3131');
+    if(running){ addFeed('SERVER','DISCONNECTED','ffa'); }
+  };
+  ws.onerror = () => roomStatus('✗ Cannot reach server — is it running?', '#FF3131');
+  ws.onmessage = e => { try{ handleServerMsg(JSON.parse(e.data)); }catch(_){} };
 }
  
-// HOST: creates a room on the server
-// NOTE: makeRoom() and joinRoom() are defined below using PeerJS (P2P) —
-// this file previously had an old WebSocket-based duplicate here that was
-// dead code (silently overridden by the real versions). Removed to avoid confusion.
- 
-function hostStartGame(){
-  lobbyHide();
-  document.getElementById('lobby-start-btn').style.display='none';
-  if(Object.keys(_peerConns).length>0){
-    isMultiplayer=true;
-    _pBroadcast({type:'gameStarted'});
-  }
-  startGame();
-}
- 
-// ═══════════════════════════════════════════════════════
-//  P2P ROOM SYSTEM  (PeerJS — no server needed)
-// ═══════════════════════════════════════════════════════
-// Replace the entire WS block with PeerJS P2P.
-// Host peer id = 'rivals-XXXX', guest id = 'rivals-XXXX-g-<ts>'
-// myPidServer = local string pid used as player key in remotePlayers
- 
-let _peerObj = null;          // PeerJS Peer instance
-let _peerConns = {};          // pid -> DataConnection
-let _peerLibLoaded = false;
- 
-function _loadPeerLib(cb){
-  if(window.Peer){cb();return;}
-  if(_peerLibLoaded){// already loading
-    const wait=setInterval(()=>{if(window.Peer){clearInterval(wait);cb();}},100);return;}
-  _peerLibLoaded=true;
-  const s=document.createElement('script');
-  s.src='https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js';
-  s.onload=cb;
-  s.onerror=()=>roomStatus('✗ Could not load PeerJS (check internet)','#FF3131');
-  document.head.appendChild(s);
-}
- 
-function _pBroadcast(obj){
-  const s=JSON.stringify(obj);
-  Object.values(_peerConns).forEach(c=>{try{if(c&&c.open)c.send(s);}catch(e){}});
-}
-function _pSendTo(conn,obj){try{if(conn&&conn.open)conn.send(JSON.stringify(obj));}catch(e){}}
- 
+// Send a message to the server
 function peerSend(obj){
-  if(!obj.pid)obj.pid=myPidServer;
-  if(obj.type==='kill'){
-    obj.killer_pid=myPidServer;
-    obj.killer_name=obj.name||playerName;
-    obj.victim_name=obj.victim||'?';
-    obj.killer_team=obj.team||myTeam;
+  if(ws && ws.readyState === WebSocket.OPEN){
+    ws.send(JSON.stringify(obj));
   }
-  _pBroadcast(obj);
 }
  
-// ── HOST ──────────────────────────────────────────────
+// ── HOST creates a room ──────────────────────────────────
 function makeRoom(){
-  playerName=(document.getElementById('name-in').value.trim().toUpperCase()||'PLAYER').slice(0,12)||'PLAYER';
-  const raw=document.getElementById('code-in').value.trim();
-  const code=raw&&/^\d{4}$/.test(raw)?raw:String(Math.floor(1000+Math.random()*9000));
-  roomCode=code; isHost=true;
-  document.getElementById('code-in').value=code;
-  roomStatus('⏳ Opening room…');
-  _loadPeerLib(()=>{
-    if(_peerObj)try{_peerObj.destroy();}catch(e){}
-    _peerConns={};
-    myPidServer='rivals-'+code;
-    _peerObj=new Peer(myPidServer,{debug:0});
-    _peerObj.on('open',()=>{
-      const el=document.getElementById('room-code-big');
-      if(el){el.style.display='block';el.textContent=code;}
-      roomStatus('✓ ROOM '+code+' OPEN — share this code!','#00E5A0');
-      lobbyHide();
-      lobbyAddPlayer('me',playerName,myTeam,mySkin.id,true);
-      lobbyChatAdd('SYSTEM','Room '+code+' created — share this code!',false);
-      lobbyShow();
-      switchTab('play');
-      const sb=document.getElementById('lobby-start-btn');if(sb)sb.style.display='block';
-    });
-    _peerObj.on('connection',conn=>{
-      const gid=conn.peer;
-      _peerConns[gid]=conn;
-      conn.on('open',()=>{
-        // send welcome with current lobby state
-        _pSendTo(conn,{type:'roomJoined',code:roomCode,pid:gid,
-          hostName:playerName,hostTeam:myTeam,hostSkin:mySkin.id,mode:mode.id});
-      });
-      conn.on('data',d=>{try{_handleP2P(JSON.parse(d),gid);}catch(e){}});
-      conn.on('close',()=>{
-        const k=gid;
-        delete _peerConns[k];
-        lobbyRemovePlayer(k);
-        delete remotePlayers[k];
-        lobbyChatAdd('SYSTEM','A player left.',false);
-        addFeed('PLAYER','LEFT','ffa');
-      });
-    });
-    _peerObj.on('error',e=>{
-      if(e.type==='unavailable-id'){
-        const nc=String(Math.floor(1000+Math.random()*9000));
-        document.getElementById('code-in').value=nc;
-        roomStatus('Code taken — use: '+nc,'#FF3131');
-      } else roomStatus('✗ '+e.message,'#FF3131');
-    });
+  playerName = (document.getElementById('name-in').value.trim().toUpperCase() || 'PLAYER').slice(0,12) || 'PLAYER';
+  isHost = true;
+  roomStatus('⏳ Creating room…');
+  _wsEnsure(()=>{
+    ws.send(JSON.stringify({
+      type: 'createRoom',
+      name: playerName,
+      team: myTeam,
+      skin: mySkin.id
+    }));
   });
 }
  
-// ── GUEST ─────────────────────────────────────────────
+// ── GUEST joins by code ──────────────────────────────────
 function joinRoom(){
-  playerName=(document.getElementById('name-in').value.trim().toUpperCase()||'PLAYER').slice(0,12)||'PLAYER';
-  const code=document.getElementById('code-in').value.trim();
-  if(!/^\d{4}$/.test(code)){roomStatus('✗ Enter 4-digit code','#FF3131');return;}
-  roomCode=code; isHost=false;
-  roomStatus('⏳ Connecting to room '+code+'…');
-  _loadPeerLib(()=>{
-    if(_peerObj)try{_peerObj.destroy();}catch(e){}
-    _peerConns={};
-    myPidServer='rivals-'+code+'-g-'+Date.now();
-    _peerObj=new Peer(myPidServer,{debug:0});
-    _peerObj.on('open',()=>{
-      const conn=_peerObj.connect('rivals-'+code,{reliable:true});
-      _peerConns['host']=conn;
-      conn.on('open',()=>{
-        conn.send(JSON.stringify({type:'guestHello',pid:myPidServer,
-          name:playerName,team:myTeam,skin:mySkin.id}));
-      });
-      conn.on('data',d=>{try{_handleP2P(JSON.parse(d),'host');}catch(e){}});
-      conn.on('close',()=>{
-        delete _peerConns['host'];
-        roomStatus('Host disconnected','#FF3131');
-        if(running)addFeed('HOST','LEFT','ffa');
-      });
-    });
-    _peerObj.on('error',e=>{
-      if(e.type==='peer-unavailable')roomStatus('✗ Room '+code+' not found','#FF3131');
-      else roomStatus('✗ '+e.message,'#FF3131');
-    });
+  playerName = (document.getElementById('name-in').value.trim().toUpperCase() || 'PLAYER').slice(0,12) || 'PLAYER';
+  const code = (document.getElementById('code-in').value.trim().toUpperCase());
+  if(!code){ roomStatus('✗ Enter the room code', '#FF3131'); return; }
+  isHost = false;
+  roomStatus('⏳ Joining room ' + code + '…');
+  _wsEnsure(()=>{
+    ws.send(JSON.stringify({
+      type: 'joinRoom',
+      code: code,
+      name: playerName,
+      team: myTeam,
+      skin: mySkin.id
+    }));
   });
 }
  
-// ── UNIFIED MESSAGE HANDLER ────────────────────────────
-function _handleP2P(msg, fromId){
+// ── HOST starts the round from lobby ────────────────────
+function hostStartGame(){
+  if(!ws || ws.readyState !== WebSocket.OPEN){ roomStatus('✗ Not connected', '#FF3131'); return; }
+  ws.send(JSON.stringify({ type: 'startGame' }));
+}
+ 
+// ── Unified server message handler ──────────────────────
+function handleServerMsg(msg){
   switch(msg.type){
  
-    // ── LOBBY ──────────────────────────────────────────
- 
-    case'guestHello':{
-      // Host receives new guest
-      const k=msg.pid;
-      const guestTeam=myTeam==='red'?'blue':'red';
-      lobbyAddPlayer(k,msg.name,guestTeam,msg.skin||'phantom',false);
-      lobbyChatAdd('SYSTEM',msg.name+' joined the room!',false);
-      remotePlayers[k]={x:guestTeam==='red'?100:AW-100,y:AH/2,angle:0,
-        name:msg.name,team:guestTeam,skin:msg.skin||'phantom',
-        hp:3,dead:false,gun:'pistol',kills:0,deaths:0,score:0,coins:0,vx:0,vy:0};
-      addFeed(msg.name,'JOINED',guestTeam);
-      // Tell everyone about the new player
-      _pBroadcast({type:'playerJoined',pid:k,name:msg.name,team:guestTeam,skin:msg.skin||'phantom'});
+    case 'connected':
+      // Server assigned us a pid before we even joined a room
+      myPidServer = msg.pid;
       break;
-    }
  
-    case'roomJoined':{
-      // Guest receives confirmation from host
-      isMultiplayer=true;
-      roomStatus('✓ Joined room '+msg.code+' — waiting for host…','#00E5A0');
-      const hostTeam=msg.hostTeam||'red';
-      const myGuestTeam=hostTeam==='red'?'blue':'red';
-      myTeam=myGuestTeam;
-      document.getElementById('tbr').classList.toggle('on',myTeam==='red');
-      document.getElementById('tbb').classList.toggle('on',myTeam==='blue');
+    case 'roomCreated':{
+      myPidServer = msg.pid;
+      _myRoomCode  = msg.code;
+      roomCode     = msg.code;
+      isMultiplayer = true;
+      const el = document.getElementById('room-code-big');
+      if(el){ el.style.display = 'block'; el.textContent = msg.code; }
+      roomStatus('✓ ROOM ' + msg.code + ' OPEN — share this code!', '#00E5A0');
+      // Pre-populate player list with ourselves
+      remotePlayers = {};
       lobbyHide();
-      lobbyAddPlayer('host',msg.hostName||'HOST',hostTeam,msg.hostSkin||'phantom',false);
-      lobbyAddPlayer('me',playerName,myGuestTeam,mySkin.id,false);
-      lobbyChatAdd('SYSTEM','Joined room '+msg.code+'!',false);
+      lobbyAddPlayer('me', playerName, myTeam, mySkin.id, true);
+      lobbyChatAdd('SYSTEM', 'Room ' + msg.code + ' created!', false);
       lobbyShow();
-      showScreen('menu');switchTab('play');
-      document.querySelector('.wrap').classList.add('guest-locked');
-      // Set up host as remote player
-      remotePlayers['host']={x:hostTeam==='red'?100:AW-100,y:AH/2,angle:0,
-        name:msg.hostName||'HOST',team:hostTeam,skin:msg.hostSkin||'phantom',
-        hp:3,dead:false,gun:'pistol',kills:0,deaths:0,score:0,coins:0,vx:0,vy:0};
+      switchTab('play');
+      const sb = document.getElementById('lobby-start-btn');
+      if(sb) sb.style.display = 'block';
       break;
     }
  
-    case'playerJoined':{
-      const k=msg.pid; if(k===myPidServer)break;
-      if(!remotePlayers[k])remotePlayers[k]={x:msg.team==='red'?100:AW-100,y:AH/2,angle:0,
-        name:msg.name,team:msg.team,skin:msg.skin||'phantom',
-        hp:3,dead:false,gun:'pistol',kills:0,deaths:0,score:0,coins:0,vx:0,vy:0};
-      lobbyAddPlayer(k,msg.name,msg.team,msg.skin||'phantom',false);
-      lobbyChatAdd('SYSTEM',msg.name+' joined!',false);
+    case 'roomJoined':{
+      myPidServer  = msg.pid;
+      _myRoomCode   = msg.code;
+      roomCode      = msg.code;
+      isMultiplayer = true;
+      remotePlayers = {};
+      lobbyHide();
+      // Add all existing players to lobby
+      for(const [k, p] of Object.entries(msg.players || {})){
+        const isSelf = parseInt(k) === myPidServer;
+        if(!isSelf){
+          remotePlayers[k] = {
+            x: p.team==='red'?100:1300, y:400, angle:0,
+            name:p.name, team:p.team, skin:p.skin||'phantom',
+            hp:3, dead:false, gun:'pistol', kills:0, deaths:0, score:0, coins:0, vx:0, vy:0
+          };
+          lobbyAddPlayer(k, p.name, p.team, p.skin||'phantom', false);
+        } else {
+          lobbyAddPlayer('me', playerName, myTeam, mySkin.id, false);
+        }
+      }
+      // If room is already in-game, jump straight in
+      if(msg.state === 'ingame'){
+        isMultiplayer = true;
+        roomStatus('✓ Joined in-progress game!', '#00E5A0');
+        startGame();
+      } else {
+        roomStatus('✓ Joined room ' + msg.code + ' — waiting for host…', '#00E5A0');
+        lobbyChatAdd('SYSTEM', 'Joined room ' + msg.code + '!', false);
+        lobbyShow();
+        showScreen('menu'); switchTab('play');
+        document.querySelector('.wrap').classList.add('guest-locked');
+      }
       break;
     }
  
-    case'gameStarted':
-      lobbyHide(); isMultiplayer=true;
-      roomStatus('✓ Game started!','#00E5A0');
-      if(!running)startGame();
+    case 'joinError':
+      roomStatus('✗ ' + (msg.msg || 'Cannot join'), '#FF3131');
       break;
  
-    case'chat':
-      if(msg.pid!==myPidServer)lobbyChatAdd(msg.name||'?',msg.text||'',false);
-      // Host relays to all
-      if(isHost)_pBroadcast({type:'chat',pid:msg.pid,name:msg.name,text:msg.text});
+    case 'playerJoined':{
+      const p = msg.player;
+      const k = String(p.pid);
+      if(parseInt(k) === myPidServer) break;
+      if(!remotePlayers[k]){
+        remotePlayers[k] = {
+          x:p.team==='red'?100:1300, y:400, angle:0,
+          name:p.name, team:p.team, skin:p.skin||'phantom',
+          hp:3, dead:false, gun:'pistol', kills:0, deaths:0, score:0, coins:0, vx:0, vy:0
+        };
+      }
+      lobbyAddPlayer(k, p.name, p.team, p.skin||'phantom', false);
+      lobbyChatAdd('SYSTEM', p.name + ' joined!', false);
+      addFeed(p.name, 'JOINED', p.team);
       break;
+    }
  
-    case'backToLobby':
+    case 'playerLeft':{
+      const k = String(msg.pid);
+      delete remotePlayers[k];
+      lobbyRemovePlayer(k);
+      lobbyChatAdd('SYSTEM', 'A player left.', false);
+      if(running) addFeed('PLAYER','LEFT','ffa');
+      break;
+    }
+ 
+    case 'gameStarted':{
+      isMultiplayer = true;
+      lobbyHide();
+      roomStatus('✓ Game started!', '#00E5A0');
+      // Populate remote players from server roster
+      for(const [k, p] of Object.entries(msg.players || {})){
+        if(parseInt(k) === myPidServer) continue;
+        remotePlayers[k] = {
+          x:p.team==='red'?100:1300, y:400, angle:0,
+          name:p.name, team:p.team, skin:p.skin||'phantom',
+          hp:3, dead:false, gun:'pistol', kills:0, deaths:0, score:0, coins:0, vx:0, vy:0
+        };
+      }
+      if(!running) startGame();
+      break;
+    }
+ 
+    case 'returnToLobby':
+    case 'backToLobby':
       endScreenReturn();
       break;
  
-    // ── IN-GAME ────────────────────────────────────────
- 
-    case'state':{
-      const k=msg.pid; if(k===myPidServer)break;
-      if(!remotePlayers[k])break;
-      remotePlayers[k].x=msg.x; remotePlayers[k].y=msg.y;
-      remotePlayers[k].angle=msg.angle;
-      remotePlayers[k].vx=msg.vx||0; remotePlayers[k].vy=msg.vy||0;
+    case 'roundEnd':{
+      // Server declared a winner — show end screen
+      const won = msg.results?.find(r => r.pid === myPidServer)?.kills >= (msg.results?.[0]?.kills || 99);
+      if(!gameOver) endGame(msg.winner_name + ' WINS!', 'y');
       break;
     }
  
-    case'shoot':{
-      const k=msg.pid; if(k===myPidServer)break;
-      const rp=remotePlayers[k];
-      const g=GUN_MAP[msg.gun]||GUN_MAP['pistol'];
-      if(rp&&!rp.dead){
+    case 'state':{
+      const k = String(msg.pid);
+      if(parseInt(k) === myPidServer) break;
+      if(remotePlayers[k]){
+        remotePlayers[k].x     = msg.x;
+        remotePlayers[k].y     = msg.y;
+        remotePlayers[k].angle = msg.angle;
+        remotePlayers[k].vx    = msg.vx || 0;
+        remotePlayers[k].vy    = msg.vy || 0;
+      }
+      break;
+    }
+ 
+    case 'shoot':{
+      const k = String(msg.pid);
+      if(parseInt(k) === myPidServer) break;
+      const rp = remotePlayers[k];
+      const g  = GUN_MAP[msg.gun] || GUN_MAP['pistol'];
+      if(rp && !rp.dead){
         for(let i=0;i<g.pel;i++){
-          const sp=(Math.random()-.5)*g.spread*2+(g.pel>1?(i-2)*.06:0);
-          const fo={x:msg.x,y:msg.y,team:rp.team,powDmg:false,vx:0,vy:0};
-          bullets.push(new Bullet(msg.x,msg.y,msg.angle+sp,fo,g));
+          const sp = (Math.random()-.5)*g.spread*2 + (g.pel>1?(i-2)*.06:0);
+          const fo = {x:msg.x,y:msg.y,team:rp.team,powDmg:false,vx:0,vy:0};
+          bullets.push(new Bullet(msg.x, msg.y, msg.angle+sp, fo, g));
         }
       }
       break;
     }
  
-    case'kill':{
-      const k=msg.killer_pid||msg.pid;
+    case 'kill':{
+      const k = String(msg.killer_pid);
       if(remotePlayers[k]){
-        remotePlayers[k].kills=(remotePlayers[k].kills||0)+1;
-        remotePlayers[k].score=(remotePlayers[k].score||0)+100;
-        remotePlayers[k].coins=(remotePlayers[k].coins||0)+5;
+        remotePlayers[k].kills = msg.attacker_kills || (remotePlayers[k].kills+1);
+        remotePlayers[k].score = msg.attacker_score || (remotePlayers[k].score+100);
+        remotePlayers[k].coins = msg.attacker_coins || remotePlayers[k].coins;
       }
-      addFeed(msg.killer_name||msg.name||'?',msg.victim_name||msg.victim||'?',msg.killer_team||msg.team||'ffa');
-      const kt=msg.killer_team||msg.team;
-      if(kt==='red'||kt==='blue'){kills[kt]=(kills[kt]||0)+1;}
+      addFeed(msg.killer_name||'?', msg.victim_name||'?', msg.killer_team||'ffa');
+      const kt = msg.killer_team;
+      if(kt==='red'||kt==='blue'){ kills[kt]=(kills[kt]||0)+1; }
       upScore();
       break;
     }
  
-    case'hp':{
-      const k=msg.pid; if(k===myPidServer)break;
-      if(remotePlayers[k]){remotePlayers[k].hp=msg.hp;if(msg.hp<=0)remotePlayers[k].dead=true;}
-      break;
-    }
- 
-    case'dead':{
-      const k=msg.pid; if(k===myPidServer)break;
-      if(remotePlayers[k]){remotePlayers[k].dead=true;remotePlayers[k].hp=0;}
-      if(mode.id==='1v1'&&!gameOver&&!duelBetween&&performance.now()-gameStartT>2000){
-        duelRounds.player++;endDuelRound('PLAYER');
+    case 'damaged':{
+      const k = String(msg.pid);
+      if(parseInt(k) === myPidServer){
+        if(player){ player.hp=msg.hp; player.shield=msg.shield||0; upHp(); }
+      } else if(remotePlayers[k]){
+        remotePlayers[k].hp = msg.hp;
+        if(msg.hp <= 0) remotePlayers[k].dead = true;
       }
       break;
     }
  
-    case'respawn':{
-      const k=msg.pid; if(k===myPidServer)break;
+    case 'respawn':{
+      const k = String(msg.pid);
       if(remotePlayers[k]){
-        remotePlayers[k].dead=false;remotePlayers[k].hp=3;
-        remotePlayers[k].x=remotePlayers[k].team==='red'?100:AW-100;
-        remotePlayers[k].y=AH/2;
+        remotePlayers[k].dead = false;
+        remotePlayers[k].hp   = 3;
+        remotePlayers[k].gun  = 'pistol';
       }
       break;
     }
  
-    case'gun':{
-      const k=msg.pid; if(k===myPidServer)break;
-      if(remotePlayers[k])remotePlayers[k].gun=msg.gun;
-      break;
-    }
- 
-    case'score':{
-      const k=msg.pid; if(k===myPidServer)break;
-      if(remotePlayers[k]){
-        if(msg.kills!==undefined)remotePlayers[k].kills=msg.kills;
-        if(msg.score!==undefined)remotePlayers[k].score=msg.score;
-        if(msg.coins!==undefined)remotePlayers[k].coins=msg.coins;
+    case 'shopResult':
+      if(msg.success){
+        const g = GUN_MAP[msg.gun];
+        if(g && player){ player.setGun(g); player.ammo=msg.ammo; player.coins=msg.coins; upAmmo(); upCoins(); }
+        document.getElementById('shop-msg').style.color='#00E5A0';
+        document.getElementById('shop-msg').textContent='✓ BOUGHT '+g?.name+'!';
+      } else {
+        document.getElementById('shop-msg').style.color='#FF3131';
+        document.getElementById('shop-msg').textContent='✗ '+(msg.msg||'Cannot buy');
       }
-      upScore();
-      break;
-    }
- 
-    case'duelRoundWon':
-      duelRounds.bot=(duelRounds.bot||0)+1;
-      if(!duelBetween)endDuelRound('BOT');
+      buildShop();
       break;
  
-    case'duelNewRound':{
-      const k=Object.keys(remotePlayers)[0];
-      if(k&&remotePlayers[k]){
-        remotePlayers[k].dead=false;remotePlayers[k].hp=3;
-        remotePlayers[k].gun='pistol';
-        remotePlayers[k].x=remotePlayers[k].team==='red'?260:AW-260;
-        remotePlayers[k].y=AH/2;
-      }
+    case 'reloaded':
+      if(player){ player.ammo = msg.ammo; player.reloading=false; upAmmo(); }
+      break;
+ 
+    case 'chat':
+      if(msg.pid !== myPidServer)
+        lobbyChatAdd(msg.name||'?', msg.text||'', false);
+      break;
+ 
+    case 'swordSwing':{
+      const k = String(msg.pid);
+      if(parseInt(k) === myPidServer) break;
+      const rp = remotePlayers[k];
+      if(rp) burst(msg.x, msg.y, '#FFE600', 8, true);
       break;
     }
   }
 }
  
+// Override peerSend so in-game events go to server
+// (already defined above as ws.send wrapper)
  
- 
- 
-// ═══════════════════════════════════
-//  START GAME
-// ═══════════════════════════════════
 function startSolo(){
   playerName=(document.getElementById('name-in').value.trim().toUpperCase()||'PLAYER').slice(0,12)||'PLAYER';
   isMultiplayer=false;
-  if(_peerObj)try{_peerObj.destroy();}catch(e){}
-  _peerObj=null;_peerConns={};
   startGame();
 }
 async function startGame(){
@@ -2214,11 +2240,12 @@ function pickTeam(t){
   myTeam=t;
   document.getElementById('tbr').classList.toggle('on',t==='red');
   document.getElementById('tbb').classList.toggle('on',t==='blue');
-  // Tell guest their forced team
+  // Just update the host's own side — with 2v2/3v3+ rooms, forcing every
+  // other connected guest onto the single "opposite" team would break their
+  // already-balanced assignments, so we only broadcast the host's new team.
   if(isMultiplayer && isHost){
-    const guestTeam = t==='red'?'blue':'red';
-    peerSend({type:'hostSetTeam', hostTeam:t, guestTeam:guestTeam});
-    lobbyChatAdd('SYSTEM','Host picked '+t.toUpperCase()+' — you are '+guestTeam.toUpperCase(), false);
+    peerSend({type:'hostTeamChanged', hostTeam:t});
+    lobbyChatAdd('SYSTEM','Host switched to '+t.toUpperCase(), false);
   }
 }
 function switchTab(id){
@@ -2462,14 +2489,24 @@ function lobbyRender(){
     const teamLbl=p.team==='red'?'🔴 RED':'🔵 BLUE';
     const d=document.createElement('div');
     d.className='lp-card';
+    const canKick=isHost&&!p.isMe;
     d.innerHTML=`<span class="lp-emoji">${skin.emoji}</span>
       <div class="lp-info">
         <div class="lp-name" style="color:${skin.col}">${p.name}${p.isMe?' (YOU)':''}</div>
         <div class="lp-sub">${teamLbl}</div>
       </div>
-      ${p.isMe?'<span class="lp-badge" style="border-color:var(--y);color:var(--y)">HOST</span>':'<span class="lp-badge" style="border-color:var(--g);color:var(--g)">JOINED</span>'}`;
+      ${p.isMe?'<span class="lp-badge" style="border-color:var(--y);color:var(--y)">HOST</span>':'<span class="lp-badge" style="border-color:var(--g);color:var(--g)">JOINED</span>'}
+      ${canKick?`<button onclick="lobbyKick('${key}')" title="Kick player" style="font-family:'Press Start 2P',monospace;font-size:.2rem;background:transparent;border:1px solid var(--r);color:var(--r);padding:.15rem .35rem;margin-left:.3rem;cursor:pointer">KICK</button>`:''}`;
     el.appendChild(d);
   });
+}
+function lobbyKick(key){
+  // Server-side kick: host sends kick msg; server closes their connection
+  peerSend({type:'kick', target_pid: parseInt(key)});
+  delete remotePlayers[key];
+  lobbyRemovePlayer(key);
+  lobbyChatAdd('SYSTEM','Player was kicked by host.',false);
+  addFeed('HOST','KICKED PLAYER','ffa');
 }
 function lobbyChatAdd(who, text, isMe){
   const el=document.getElementById('lobby-chat-msgs');
@@ -2486,7 +2523,7 @@ function lobbyChatSend(){
   if(!txt)return;
   inp.value='';
   lobbyChatAdd(playerName||'YOU', txt, true);
-  peerSend({type:'lobbyChat', name:playerName||'YOU', text:txt});
+  peerSend({type:'chat', name:playerName||'YOU', text:txt});
 }
 // Enter key to send
 document.addEventListener('DOMContentLoaded',()=>{
@@ -2786,13 +2823,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(ci)ci.addEventListener('keydown',e=>{if(e.key==='Enter')submitCheat();});
 });
  
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>{s.classList.remove('active');s.style.display='';});const el=document.getElementById(id);el.classList.add('active');el.style.display='';}
 function goMenu(){
   hideWinScreen();
   lobbyHide();
   const w=document.querySelector('.wrap');if(w)w.classList.remove('guest-locked');
-  if(_peerObj)try{_peerObj.destroy();}catch(e){}
-  _peerObj=null;_peerConns={};
+  if(ws){try{ws.close();}catch(e){}}ws=null;
   remotePlayers={};isMultiplayer=false;roomCode='';myPidServer=null;
   const _bcd=document.getElementById('room-code-big');if(_bcd)_bcd.style.display='none';
   document.getElementById('room-status').textContent='';
@@ -2819,7 +2855,7 @@ window.addEventListener('keydown',e=>{
   if(e.key.toLowerCase()==='f')player.startAtk();
   if(e.key.toLowerCase()==='r'&&!player.reloading&&player.ammo<player.gun.ammo){
     player.reloading=true;player.reloadT=player.gun.reload;
-    if(isMultiplayer)peerSend({type:'gun',gun:player.gun.id});
+    if(isMultiplayer)peerSend({type:'reload'});
   }
 });
 window.addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
@@ -3019,10 +3055,8 @@ function endScreenReturn(){
     // Reset player list to just self, clear chat messages about the game
     Object.keys(lobbyPlayers).forEach(k=>delete lobbyPlayers[k]);
     lobbyAddPlayer('me', playerName, myTeam, mySkin.id, isHost);
-    if(Object.keys(_peerConns).length>0){
-      // Tell friend we're back in lobby
-      peerSend({type:'backToLobby', name:playerName});
-      // Re-show start button if host
+    if(isMultiplayer && ws && ws.readyState===WebSocket.OPEN){
+      // Already handled server-side; just re-show start button if host
       if(isHost){
         const btn=document.getElementById('lobby-start-btn');
         if(btn)btn.style.display='block';
@@ -3092,12 +3126,53 @@ function togglePause(){
   if(!running&&!paused)return;
   paused=!paused;
   document.getElementById('pause').style.display=paused?'flex':'none';
+  const rb=document.getElementById('pause-reset-btn');
+  if(rb)rb.style.display=(paused&&(!isMultiplayer||isHost)&&mode.id!=='1v1')?'block':'none';
   if(!paused){running=true;lastT=performance.now();requestAnimationFrame(loop);}
   else running=false;
 }
 function exitToMenu(){paused=false;document.getElementById('pause').style.display='none';goMenu();}
  
+// ── ADMIN: reset the current round's scores/positions without ending the match ──
+function _resetRoundLocal(){
+  bullets=[];particles=[];pups=[];
+  kills={red:0,blue:0};kothT={red:0,blue:0};ctfC={red:0,blue:0};ccsScore={red:0,blue:0};
+  for(const k in ffaK)ffaK[k]=0;
+  for(const z of ccsZones){z.owner=null;z.capProg=0;}
+  for(const team of['red','blue']){
+    const f=flags[team];if(f){f.carrier=null;f.dropped=false;f.dropX=f.homeX;f.dropY=f.homeY;f.dropT=0;}
+  }
+  for(const e of ents){
+    e.dead=false;e.hp=e.isP?playerMaxHp:MAX_HP;e.hitF=0;e.shield=0;e.swordHits=0;
+    e.reloading=false;e.reloadT=0;e.fireCD=0;e.atkCD=0;e.atk=false;
+    e.kills=0;e.deaths=0;e.score=0;e.streak=0;
+    let x,y,safe,t=0;
+    do{safe=true;
+      if(mode.id==='ffa'||mode.id==='gun'){x=Math.random()<.5?55+Math.random()*120:AW-55-Math.random()*120;}
+      else{x=e.team==='red'?55+Math.random()*130:AW-55-Math.random()*130;}
+      y=80+Math.random()*(AH-160);
+      for(const o of map.obs)if(x>o.x-RAD&&x<o.x+o.w+RAD&&y>o.y-RAD&&y<o.y+o.h+RAD){safe=false;break;}
+    }while(!safe&&++t<40);
+    e.x=x;e.y=y;
+    if(mode.id!=='gun')e.setGun(e.isP?(GUN_MAP[equippedGunId]||GUN_MAP['pistol']):e.gun);
+  }
+  for(const k in remotePlayers){
+    const rp=remotePlayers[k];
+    rp.dead=false;rp.hp=3;rp.kills=0;rp.deaths=0;rp.score=0;
+    rp.x=rp.team==='red'?100:AW-100;rp.y=AH/2;
+  }
+  gameStartT=performance.now();hideRespawn();closeShop();
+  upScore();upStats();upHp();upAmmo();upPow();upCoins();
+  addFeed('HOST','RESET ROUND','ffa');
+}
+function adminResetRound(){
+  if(!running&&!paused)return;
+  if(isMultiplayer&&!isHost)return; // only host may trigger
+  _resetRoundLocal();
+  if(isMultiplayer&&isHost)peerSend({type:'adminReset'});
+  togglePause(); // close pause menu and resume play
+}
+ 
 </script>
 </body>
 </html>
- 
